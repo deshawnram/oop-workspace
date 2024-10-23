@@ -23,7 +23,7 @@ public:
         int newX = getCoordinates().first + xOffset;
         int newY = getCoordinates().second + yOffset;
 
-        if (std::abs(xOffset) <= 2 && std::abs(yOffset) <= 2 &&  // Use std::abs
+        if (std::abs(xOffset) <= 2 && std::abs(yOffset) <= 2 &&
             newX >= 0 && newX < getGridWidth() &&
             newY >= 0 && newY < getGridHeight()) {
             setCoordinates(newX, newY);

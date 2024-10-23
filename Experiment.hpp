@@ -10,9 +10,12 @@ public:
     bool interact(Scientist* player) override {
         if (Helper::manhattanDistance(getCoordinates(), player->getCoordinates()) == 0) {
             player->runExperiment();
-            return player->getExperimentCount() <= 3;
+            if (player->getExperimentCount() > 3) {
+                return false; // Scientist is exhausted
+            }
+            return true;
         }
-        return true;  // Return true if no interaction should occur
+        return true;  // No interaction if not on the same spot
     }
 
     InteractableType getType() override {

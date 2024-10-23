@@ -51,8 +51,6 @@ public:
             }
             if (goal.interact(&player)) {
                 state = WIN;
-            } else if (player.getExperimentCount() > 3) {
-                state = LOSE;
             }
         }
     }
