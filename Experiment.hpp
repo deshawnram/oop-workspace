@@ -12,7 +12,7 @@ public:
             player->runExperiment();
             return player->getExperimentCount() <= 3;
         }
-        return false;
+        return true;  // Return true if no interaction should occur
     }
 
     InteractableType getType() override {

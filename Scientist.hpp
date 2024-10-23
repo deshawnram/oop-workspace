@@ -1,4 +1,6 @@
 #pragma once
+#include <utility>
+#include <cstdlib>  // Include this for abs
 #include "GridItem.hpp"
 
 class Scientist : public GridItem {
@@ -21,7 +23,7 @@ public:
         int newX = getCoordinates().first + xOffset;
         int newY = getCoordinates().second + yOffset;
 
-        if (abs(xOffset) <= 2 && abs(yOffset) <= 2 &&
+        if (std::abs(xOffset) <= 2 && std::abs(yOffset) <= 2 &&  // Use std::abs
             newX >= 0 && newX < getGridWidth() &&
             newY >= 0 && newY < getGridHeight()) {
             setCoordinates(newX, newY);

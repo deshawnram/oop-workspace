@@ -51,6 +51,8 @@ public:
             }
             if (goal.interact(&player)) {
                 state = WIN;
+            } else if (player.getExperimentCount() > 3) {
+                state = LOSE;
             }
         }
     }
@@ -58,23 +60,20 @@ public:
     void printGrid() {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                if (player.getCoordinates() == std::make_pair(x, y)) {
-                    std::cout << 'P';
-                } else if (goal.getCoordinates() == std::make_pair(x, y)) {
-                    std::cout << 'G';
-                } else {
-                    bool printed = false;
-                    for (auto& experiment : experiments) {
-                        if (experiment.getCoordinates() == std::make_pair(x, y)) {
-                            std::cout << 'E';
-                            printed = true;
-                            break;
-                        }
-                    }
-                    if (!printed) {
-                        std::cout << '_';
+                char symbol = '_';
+                if (goal.getCoordinates() == std::make_pair(x, y)) {
+                    symbol = 'G';
+                }
+                for (auto& experiment : experiments) {
+                    if (experiment.getCoordinates() == std::make_pair(x, y)) {
+                        symbol = 'E';
+                        break;
                     }
                 }
+                if (player.getCoordinates() == std::make_pair(x, y)) {
+                    symbol = 'P';
+                }
+                std::cout << symbol;
             }
             std::cout << std::endl;
         }
