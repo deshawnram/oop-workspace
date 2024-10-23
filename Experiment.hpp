@@ -9,11 +9,11 @@ public:
 
     bool interact(Scientist* player) override {
         if (Helper::manhattanDistance(getCoordinates(), player->getCoordinates()) == 0) {
-            if (player->getExperimentCount() < 3) {
-                player->runExperiment();
-                return true;
+            player->runExperiment();
+            if (player->getExperimentCount() > 3) {
+                return false; // Scientist is exhausted after more than 3 experiments
             }
-            return false; // Scientist is exhausted if already completed 3 experiments
+            return true;
         }
         return true;  // No interaction if not on the same spot
     }
