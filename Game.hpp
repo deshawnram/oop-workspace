@@ -49,7 +49,7 @@ public:
                     return;
                 }
             }
-            if (goal.interact(&player)) {
+            if (goal.interact(&player) && player.getExperimentCount() > 0) {
                 state = WIN;
             }
         }
